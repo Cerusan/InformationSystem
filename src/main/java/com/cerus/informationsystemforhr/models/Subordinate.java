@@ -5,51 +5,50 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 @Entity
-public class Boss {
+public class Subordinate {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "boss_name")
+    @Column(name = "subordinate_name")
     @NotEmpty(message = "Name should not be empty")
     private String name;
 
-    @Column(name = "boss_surname")
+    @Column(name = "subordinate_surname")
     @NotEmpty(message = "Surname should not be empty")
     private String surname;
 
-    @Column(name = "boss_fathername")
+    @Column(name = "subordinate_fathername")
     @NotEmpty(message = "Fathername should not be empty")
     private String fathername;
 
-    @Column (name = "boss_age")
+    @Column (name = "subordinate_age")
     @Min(value = 14, message = "Age should be greater than 14")
     private int age;
 
-    @Column(name = "boss_post")
+    @Column(name = "subordinate_post")
     @NotEmpty(message = "Post should not be empty")
     private String post;
 
-    @Column(name = "boss_department")
+    @Column(name = "subordinate_department")
     @NotEmpty(message = "Department should not be empty")
     private String department;
 
-    @Column(name = "boss_skills")
+    @Column(name = "subordinate_skills")
     private String skills;
 
-    @Column(name = "boss_experience")
+    @Column(name = "subordinate_experience")
     private String experience;
 
     @Column (name = "accepted_at")
     private LocalDateTime acceptedAt;
 
-    @OneToMany(mappedBy = "boss")
-    private List<Subordinate> subordinateList;
+    @ManyToOne
+    @JoinColumn(name = "boss_id", referencedColumnName = "id")
+    private Boss boss;
 
     public int getId() {
         return id;
@@ -129,5 +128,13 @@ public class Boss {
 
     public void setAcceptedAt(LocalDateTime acceptedAt) {
         this.acceptedAt = acceptedAt;
+    }
+
+    public Boss getBoss() {
+        return boss;
+    }
+
+    public void setBoss(Boss boss) {
+        this.boss = boss;
     }
 }
