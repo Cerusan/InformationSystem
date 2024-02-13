@@ -6,9 +6,11 @@ import com.cerus.informationsystemforhr.repositories.UserRepository;
 import com.cerus.informationsystemforhr.services.security.UserDetailsServiceImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
