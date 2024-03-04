@@ -8,8 +8,8 @@
 
 <form method="post" th:action="@{/auth/process_register}" th:object="${userReg}">
   <input type="text" placeholder="Login" th:field="*{username}">
-  <input type="text" placeholder="Password" th:field="*{password}">
-  <input type="submit" value="Submit">
+  <input type="password" placeholder="Password" th:field="*{password}">
+  <input type="submit" value="Register">
 </form>
 
 </body>
