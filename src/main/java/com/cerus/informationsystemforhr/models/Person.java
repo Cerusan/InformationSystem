@@ -5,51 +5,74 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 @Entity
-public class Boss {
+public class Person {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "boss_name")
+    @Column(name = "name")
     @NotEmpty(message = "Name should not be empty")
     private String name;
 
-    @Column(name = "boss_surname")
+    @Column(name = "surname")
     @NotEmpty(message = "Surname should not be empty")
     private String surname;
 
-    @Column(name = "boss_fathername")
+    @Column(name = "fathername")
     @NotEmpty(message = "Fathername should not be empty")
     private String fathername;
 
-    @Column (name = "boss_age")
+    @Column (name = "age")
     @Min(value = 14, message = "Age should be greater than 14")
     private int age;
 
-    @Column(name = "boss_post")
+    @Column(name = "post")
     @NotEmpty(message = "Post should not be empty")
     private String post;
 
-    @Column(name = "boss_department")
+    @Column(name = "department")
     @NotEmpty(message = "Department should not be empty")
     private String department;
 
-    @Column(name = "boss_skills")
+    @Column(name = "skills")
     private String skills;
 
-    @Column(name = "boss_experience")
+    @Column(name = "experience")
     private String experience;
 
     @Column (name = "accepted_at")
     private LocalDateTime acceptedAt;
 
-    @OneToMany(mappedBy = "boss")
-    private List<Subordinate> subordinateList;
+    public Person() {
+    }
+
+    public Person(String name, String surname, String fathername, int age, String post, String department, String skills, String experience, LocalDateTime acceptedAt) {
+        this.name = name;
+        this.surname = surname;
+        this.fathername = fathername;
+        this.age = age;
+        this.post = post;
+        this.department = department;
+        this.skills = skills;
+        this.experience = experience;
+        this.acceptedAt = acceptedAt;
+    }
+
+    public Person(int id, String name, String surname, String fathername, int age, String post, String department, String skills, String experience, LocalDateTime acceptedAt) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.fathername = fathername;
+        this.age = age;
+        this.post = post;
+        this.department = department;
+        this.skills = skills;
+        this.experience = experience;
+        this.acceptedAt = acceptedAt;
+    }
 
     public int getId() {
         return id;

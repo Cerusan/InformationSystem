@@ -4,7 +4,6 @@ import com.cerus.informationsystemforhr.models.Role;
 import com.cerus.informationsystemforhr.models.User;
 import com.cerus.informationsystemforhr.repositories.UserRepository;
 import com.cerus.informationsystemforhr.services.security.UserDetailsServiceImpl;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,15 +29,17 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getAuthUser() { //TODO think about do I really need it?
-        return null;
+    public User getAuthUser() {
+        return userDetailsService.getAuthUser();
     }
 
     @Override
-    public void updateUser(int userId, User userUpdate) {
-        User user = userRepository.findById(userId).get();
-        //user.
-        //TODO - should I change login?
+    public void updateUser(User userOld, User userUpdate) {
+
+        userOld.setUsername(userUpdate.getUsername());
+        userOld.setPassword(userUpdate.getPassword());
+
+        userRepository.save(userOld);
     }
 
     @Override

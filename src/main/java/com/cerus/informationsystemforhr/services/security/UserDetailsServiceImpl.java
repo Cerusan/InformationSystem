@@ -3,10 +3,12 @@ package com.cerus.informationsystemforhr.services.security;
 import com.cerus.informationsystemforhr.models.User;
 import com.cerus.informationsystemforhr.repositories.UserRepository;
 import com.cerus.informationsystemforhr.security.UserDetailsImpl;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -30,5 +32,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new UserDetailsImpl(user.get());
     }
 
+    public User getAuthUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userDetails;
+
+        if (authentication instanceof AnonymousAuthenticationToken)
+            return null;
+        else
+            userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        return userDetails.getUser();
+    }
 
 }
