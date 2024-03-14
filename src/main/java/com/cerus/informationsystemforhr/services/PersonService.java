@@ -37,14 +37,16 @@ public interface PersonService {
      * @param name
      * @return
      */
-    Person getPersonByName(String name);
+    List<Person> getPersonByName(String name);
 
     /**
      * Метод получения существующего объекта класса Person по значению его поля surname
      * @param surname
      * @return
      */
-    Person getPersonBySurname(String surname);
+    List<Person> getPersonBySurname(String surname);
+
+    List<Person> getPersonByDepartment(String department);
 
     /**
      * Метод получения всех существующих объектов класса Person
