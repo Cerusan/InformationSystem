@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "TB_PERSON")
 public class Person {
     @Id
     @Column(name = "id")
@@ -22,7 +23,6 @@ public class Person {
     private String surname;
 
     @Column(name = "fathername")
-    @NotEmpty(message = "Fathername should not be empty")
     private String fathername;
 
     @Column (name = "age")

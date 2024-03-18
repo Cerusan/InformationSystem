@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add person</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/people/add-person-process}" th:object="${person}">
+
+    <input type="text" placeholder="Name" th:field="*{name}">
+    </br>
+    <input type="text" placeholder="Surname" th:field="*{surname}">
+    </br>
+    <input type="text" placeholder="Fathername" th:field="*{fathername}">
+    </br>
+    <input type="number" placeholder="Age" th:field="*{age}">
+    </br>
+    <input type="text" placeholder="Post" th:field="*{post}">
+    </br>
+    <input type="text" placeholder="Department" th:field="*{department}">
+    </br>
+    <input type="text" placeholder="Skills" th:field="*{skills}">
+    </br>
+    <input type="text" placeholder="Experience" th:field="*{experience}">
+    </br>
+    <input type="submit" th:value="${'Добавить'}">
+    </br>
+
+</form>
+
+</body>
+</html>
